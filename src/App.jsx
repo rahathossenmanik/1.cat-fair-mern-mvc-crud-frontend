@@ -1,28 +1,22 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import NavBar from './nav/NavBar';
-import { Container } from 'reactstrap';
-import { authProtectedRoutes } from './routes/auth/routes';
-import { publicRoutes } from './routes/public/routes';
+import React, { useState } from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
+import { MantineProvider } from '@mantine/core';
+import Layout from './layout';
+import ToastBody from './components/ToastBody';
+import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
-  const auth = true;
+  const [themeMode, setThemeMode] = useState('dark');
+
   return (
-    <Router>
-      <div className="App wrapper">
-        <Container className="p-0 is-open">
-          <NavBar />
-          <Container>
-            <Routes>
-              {authProtectedRoutes.map((route, i) => (
-                <Route exact key={i} path={route.path} element={route.element} />
-              ))}
-              {auth && publicRoutes.map((route, i) => <Route exact key={i} path={route.path} element={route.element} />)}
-            </Routes>
-          </Container>
-        </Container>
-      </div>
-    </Router>
+    <MantineProvider theme={{ colorScheme: themeMode }} withGlobalStyles withNormalizeCSS>
+      <Router>
+        <Layout setThemeMode={setThemeMode} />
+      </Router>
+
+      {/* Toast Body for All Toaster.  */}
+      <ToastBody themeMode={themeMode} />
+    </MantineProvider>
   );
 };
 
