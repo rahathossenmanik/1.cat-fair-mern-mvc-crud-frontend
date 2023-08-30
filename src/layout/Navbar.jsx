@@ -67,7 +67,7 @@ const Navbar = (props) => {
             </Text>
           </Group>
 
-          <Group className={classes.hiddenMobile}>
+          <Group>
             {theme.colorScheme === 'dark' ? (
               <Button variant="default" onClick={() => setThemeMode('light')}>
                 <Icon icon="tdesign:mode-light" />
@@ -77,7 +77,9 @@ const Navbar = (props) => {
                 <Icon icon="tdesign:mode-dark" />
               </Button>
             )}
-            <Button onClick={() => navigate('/pets/register')}>Introduce Pet</Button>
+            <Button onClick={() => navigate('/pets/register')} className={classes.hiddenMobile}>
+              Introduce Pet
+            </Button>
           </Group>
 
           <Burger opened={drawerOpened} onClick={toggleDrawer} className={classes.hiddenDesktop} />
