@@ -6,6 +6,13 @@ export const useStyles = createStyles((theme) => ({
     paddingBottom: rem(80),
   },
 
+  mainBody: {
+    [theme.fn.largerThan('md')]: {
+      marginLeft: `calc(${theme.spacing.xl} * 2)`,
+      marginRight: `calc(${theme.spacing.xl} * 2)`,
+    },
+  },
+
   title404: {
     fontWeight: 900,
     fontSize: rem(34),
@@ -141,5 +148,30 @@ export const useStyles = createStyles((theme) => ({
     }).background,
     borderRadius: theme.radius.sm,
     padding: `${rem(4)} ${rem(12)}`,
+  },
+
+  footerMain: {
+    marginTop: rem(40),
+    borderTop: `${rem(1)} solid ${
+      theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[2]
+    }`,
+  },
+
+  footerInner: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingTop: theme.spacing.xl,
+    paddingBottom: theme.spacing.xl,
+
+    [theme.fn.smallerThan('xs')]: {
+      flexDirection: 'column',
+    },
+  },
+
+  footerLinks: {
+    [theme.fn.smallerThan('xs')]: {
+      marginTop: theme.spacing.md,
+    },
   },
 }));
