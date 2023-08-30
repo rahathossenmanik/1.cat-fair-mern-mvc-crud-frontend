@@ -1,5 +1,4 @@
 import {
-  createStyles,
   Header,
   Group,
   Button,
@@ -15,40 +14,7 @@ import { useDisclosure } from '@mantine/hooks';
 import { logo } from '../assets/images/image';
 import { useNavigate } from 'react-router-dom';
 import { Icon } from '@iconify/react';
-
-const useStyles = createStyles((theme) => ({
-  link: {
-    display: 'block',
-    lineHeight: 1,
-    padding: `${rem(8)} ${rem(12)}`,
-    borderRadius: theme.radius.sm,
-    textDecoration: 'none',
-    color: theme.colorScheme === 'dark' ? theme.white : theme.black,
-    fontSize: theme.fontSizes.sm,
-    fontWeight: 500,
-
-    '&:hover': {
-      backgroundColor: theme.fn.lighten(
-        theme.fn.variant({ variant: 'filled', color: theme.primaryColor })
-          .background,
-        0.1
-      ),
-      cursor: 'pointer',
-    },
-  },
-
-  hiddenMobile: {
-    [theme.fn.smallerThan('md')]: {
-      display: 'none',
-    },
-  },
-
-  hiddenDesktop: {
-    [theme.fn.largerThan('md')]: {
-      display: 'none',
-    },
-  },
-}));
+import { useStyles } from '../constants/common/commonStyles';
 
 const Navbar = (props) => {
   const { setThemeMode } = props;

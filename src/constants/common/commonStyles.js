@@ -1,6 +1,38 @@
 import { createStyles, rem } from '@mantine/core';
 
 export const useStyles = createStyles((theme) => ({
+  link: {
+    display: 'block',
+    lineHeight: 1,
+    padding: `${rem(8)} ${rem(12)}`,
+    borderRadius: theme.radius.sm,
+    textDecoration: 'none',
+    color: theme.colorScheme === 'dark' ? theme.white : theme.black,
+    fontSize: theme.fontSizes.sm,
+    fontWeight: 500,
+
+    '&:hover': {
+      backgroundColor: theme.fn.lighten(
+        theme.fn.variant({ variant: 'filled', color: theme.primaryColor })
+          .background,
+        0.1
+      ),
+      cursor: 'pointer',
+    },
+  },
+
+  hiddenMobile: {
+    [theme.fn.smallerThan('md')]: {
+      display: 'none',
+    },
+  },
+
+  hiddenDesktop: {
+    [theme.fn.largerThan('md')]: {
+      display: 'none',
+    },
+  },
+
   card: {
     backgroundColor:
       theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.white,
@@ -32,7 +64,7 @@ export const useStyles = createStyles((theme) => ({
   },
 
   content: {
-    maxWidth: rem(480),
+    maxWidth: rem(560),
     marginRight: `calc(${theme.spacing.xl} * 3)`,
 
     [theme.fn.smallerThan('md')]: {

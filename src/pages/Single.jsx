@@ -61,6 +61,12 @@ const Single = () => {
       style={{ minHeight: '80vh', minWidth: '100%' }}>
       <LoadingOverlay visible={loading} overlayBlur={2} />
 
+      <Image
+        src={pet?.image}
+        alt={'Pet'}
+        style={{ maxWidth: 500 }}
+        className={classes.hiddenDesktop}
+      />
       <div className={classes.inner}>
         <div className={classes.content}>
           <Title className={classes.singleTitle}>{pet?.name}</Title>
