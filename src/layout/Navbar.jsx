@@ -23,6 +23,11 @@ const Navbar = (props) => {
   const { classes, theme } = useStyles();
   const navigate = useNavigate();
 
+  const onNavigateMobile = (path) => {
+    closeDrawer();
+    navigate(path);
+  };
+
   return (
     <Box pb={20}>
       <Header height={60} px='md'>
@@ -95,19 +100,27 @@ const Navbar = (props) => {
             color={theme.colorScheme === 'dark' ? 'dark.5' : 'gray.1'}
           />
 
-          <Text onClick={() => navigate('/')} className={classes.link}>
+          <Text onClick={() => onNavigateMobile('/')} className={classes.link}>
             All Pets
           </Text>
-          <Text onClick={() => navigate('/dogs')} className={classes.link}>
+          <Text
+            onClick={() => onNavigateMobile('/dogs')}
+            className={classes.link}>
             Dogs
           </Text>
-          <Text onClick={() => navigate('/cats')} className={classes.link}>
+          <Text
+            onClick={() => onNavigateMobile('/cats')}
+            className={classes.link}>
             Cats
           </Text>
-          <Text onClick={() => navigate('/birds')} className={classes.link}>
+          <Text
+            onClick={() => onNavigateMobile('/birds')}
+            className={classes.link}>
             Birds
           </Text>
-          <Text onClick={() => navigate('/reptiles')} className={classes.link}>
+          <Text
+            onClick={() => onNavigateMobile('/reptiles')}
+            className={classes.link}>
             Reptiles
           </Text>
 
@@ -117,7 +130,7 @@ const Navbar = (props) => {
           />
 
           <Group position='center' grow pb='xl' px='md'>
-            <Button onClick={() => navigate('/pets/register')}>
+            <Button onClick={() => onNavigateMobile('/pets/register')}>
               Introduce Pet
             </Button>
           </Group>
