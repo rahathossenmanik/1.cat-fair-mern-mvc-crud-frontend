@@ -1,19 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
-import {
-  Grid,
-  Container,
-  Image,
-  Group,
-  Text,
-  Button,
-  LoadingOverlay,
-  List,
-  Title,
-} from '@mantine/core';
+import { Grid, Container, Image, Group, Text, Button, LoadingOverlay, List, Title } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { Icon } from '@iconify/react';
-import { get, post } from '../helpers/api_helpers';
+import { get, put } from '../helpers/api_helpers';
 import { PET_API } from '../constants/api/petEndpoints';
 import { useStyles } from '../constants/common/commonStyles';
 
@@ -26,8 +16,7 @@ const Single = () => {
   const [pet, setPet] = useState({});
   const [trigger, { toggle }] = useDisclosure(false);
 
-  const url =
-    window.location.protocol + '//' + window.location.host + location.pathname;
+  const url = window.location.protocol + '//' + window.location.host + location.pathname;
 
   useEffect(() => {
     const getPetByID = async () => {
@@ -41,7 +30,7 @@ const Single = () => {
   }, [trigger]);
 
   const onLoveReact = async (id) => {
-    const res = await post(PET_API.love(id));
+    const res = await put(PET_API.love(id));
     if (res) toggle();
   };
 
@@ -55,32 +44,18 @@ const Single = () => {
   };
 
   return (
-    <Container
-      my='md'
-      pos='relative'
-      style={{ minHeight: '80vh', minWidth: '100%' }}>
+    <Container my="md" pos="relative" style={{ minHeight: '80vh', minWidth: '100%' }}>
       <LoadingOverlay visible={loading} overlayBlur={2} />
 
-      <Image
-        src={pet?.image}
-        alt={'Pet'}
-        style={{ maxWidth: 500 }}
-        className={classes.hiddenDesktop}
-      />
+      <Image src={pet?.image} alt={'Pet'} style={{ maxWidth: 500 }} className={classes.hiddenDesktop} />
       <div className={classes.inner}>
         <div className={classes.content}>
           <Title className={classes.singleTitle}>{pet?.name}</Title>
-          <Text color='dimmed' mt='md'>
+          <Text color="dimmed" mt="md">
             {pet?.favorite}
           </Text>
 
-          <List
-            mt={30}
-            spacing='sm'
-            size='sm'
-            icon={
-              <Icon icon='ic:round-pets' width={20} height={20} stroke={1.5} />
-            }>
+          <List mt={30} spacing="sm" size="sm" icon={<Icon icon="ic:round-pets" width={20} height={20} stroke={1.5} />}>
             <List.Item>
               <b>Age</b> – {pet?.age} years old
             </List.Item>
@@ -93,40 +68,17 @@ const Single = () => {
           </List>
 
           <Group mt={30}>
-            <Button
-              radius='xl'
-              size='md'
-              bg='pink'
-              className={classes.control}
-              onClick={() => onLoveReact(pet?._id)}>
-              <Group spacing={0} fz='xl'>
+            <Button radius="xl" size="md" bg="pink" className={classes.control} onClick={() => onLoveReact(pet?._id)}>
+              <Group spacing={0} fz="xl">
                 Love
-                <Icon
-                  icon='mdi:heart-outline'
-                  className='mx-2'
-                  width={20}
-                  height={20}
-                  stroke={1.5}
-                />
+                <Icon icon="mdi:heart-outline" className="mx-2" width={20} height={20} stroke={1.5} />
                 {pet?.loveCount}
               </Group>
             </Button>
-            <Button
-              variant='default'
-              radius='xl'
-              size='md'
-              bg='blue'
-              className={classes.control}
-              onClick={onShareFacebook}>
-              <Group spacing={0} fz='xl'>
+            <Button variant="default" radius="xl" size="md" bg="blue" className={classes.control} onClick={onShareFacebook}>
+              <Group spacing={0} fz="xl">
                 Share
-                <Icon
-                  icon='solar:share-outline'
-                  className='mx-2'
-                  width={20}
-                  height={20}
-                  stroke={1.5}
-                />
+                <Icon icon="solar:share-outline" className="mx-2" width={20} height={20} stroke={1.5} />
               </Group>
             </Button>
           </Group>
@@ -136,7 +88,7 @@ const Single = () => {
 
       <Grid>
         <Grid.Col xs={12}>
-          <Text fz='sm' color='dimmed'>
+          <Text fz="sm" color="dimmed">
             {pet?.about}
           </Text>
         </Grid.Col>
